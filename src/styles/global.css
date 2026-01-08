@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* 1. ACTIVAMOS EL PLUGIN DE TIPOGRAFÍA */
+@plugin "@tailwindcss/typography";
+
 @theme {
   /* Paleta de Colores "Organic Paper" */
   --color-paper: #FDFBF7;
@@ -83,4 +86,48 @@ h1, h2, h3, h4, blockquote {
   backdrop-filter: blur(12px);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   border-bottom-color: rgba(45, 42, 46, 0.05) !important;
+}
+
+/* === 2. PERSONALIZACIÓN DE TIPOGRAFÍA (MARKDOWN) === */
+/* Estas reglas fuerzan a que los libros y blogs usen tus fuentes */
+
+.prose {
+  font-family: var(--font-sans); /* Texto general: Manrope */
+  color: var(--color-ink);
+}
+
+/* Títulos dentro del contenido: Cormorant */
+.prose :where(h1, h2, h3, h4) {
+  font-family: var(--font-serif);
+  font-weight: 400; /* Normal, no negrita forzada */
+  margin-top: 2em;
+  color: var(--color-ink);
+}
+
+/* Citas: Cormorant Italic */
+.prose blockquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-ink);
+  opacity: 0.8;
+  border-left-color: var(--color-dusty-rose);
+}
+
+/* Negritas */
+.prose strong {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+/* Enlaces dentro del texto */
+.prose a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-dusty-rose);
+  text-underline-offset: 3px;
+  transition: color 0.3s ease;
+}
+
+.prose a:hover {
+  color: var(--color-dusty-rose);
 }

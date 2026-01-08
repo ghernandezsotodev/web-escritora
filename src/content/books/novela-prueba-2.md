@@ -3,7 +3,7 @@ title: "Cenizas en el Viento"
 subtitle: "Una historia de amor y pérdida"
 category: novela
 publishedAt: 2023-11-20
-cover: "https://placehold.co/400x600/333333/FFF?text=Cenizas"
+cover: "/covers/la-vida-minima.jpg"
 synopsis: "Dos almas destinadas a encontrarse en el momento equivocado de la historia."
 status: published
 ---

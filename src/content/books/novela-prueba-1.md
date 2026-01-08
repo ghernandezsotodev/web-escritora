@@ -3,7 +3,7 @@ title: "El Eco de las Sombras"
 subtitle: "Lo que el silencio esconde"
 category: novela
 publishedAt: 2024-01-15
-cover: "https://placehold.co/400x600/2D2A2E/E2D1C3?text=El+Eco"
+cover: "/covers/la-vida-minima.jpg"
 synopsis: "Un misterio que regresa del pasado para atormentar a una familia que creía haberlo olvidado todo."
 status: published
 ---

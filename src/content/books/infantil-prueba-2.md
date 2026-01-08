@@ -3,7 +3,7 @@ title: "El Gato que Ladraba"
 subtitle: "Ser diferente es divertido"
 category: infantil
 publishedAt: 2025-02-14
-cover: "https://placehold.co/450x600/E2D1C3/2D2A2E?text=Gato+Raro"
+cover: "/covers/hermano-perro-hermano-gato.jpg"
 synopsis: "Michi no es como los otros gatos, ¡y eso es lo que lo hace especial!"
 status: upcoming
 ---
