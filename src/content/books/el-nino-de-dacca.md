@@ -1,9 +1,9 @@
 ---
-title: "El Eco de las Sombras"
+title: "El Niño de Dacca"
 subtitle: "Lo que el silencio esconde"
 category: novela
 publishedAt: 2024-01-15
-cover: "/covers/la-vida-minima.jpg"
+cover: "/covers/el-nino-de-dacca.jpg"
 synopsis: "Un misterio que regresa del pasado para atormentar a una familia que creía haberlo olvidado todo."
 status: published
 ---
