@@ -1,0 +1,64 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const { title = "María Esperanza Gallegos | Escritora" } = Astro.props;
+---
+
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <title>{title}</title>
+    
+    <meta name="description" content="Sitio oficial de María Esperanza Gallegos. Escritora de novelas contemporáneas y cuentos infantiles que exploran la realidad y la fantasía." />
+    <meta name="author" content="María Esperanza Gallegos" />
+    
+    <ClientRouter />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="bg-paper text-ink font-sans antialiased flex flex-col min-h-screen">
+
+    <Navbar />
+    
+    <div class="flex-grow">
+        <slot />
+    </div>
+
+    <Footer />
+
+    <script>
+        // Lógica de Animaciones al hacer Scroll (Reveal)
+        // Se ejecuta cada vez que Astro cambia de página gracias a 'astro:page-load'
+        document.addEventListener('astro:page-load', () => {
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Se activa al ver el 10% del elemento
+            };
+    
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Dejar de observar una vez animado
+                    }
+                });
+            }, observerOptions);
+    
+            // Buscar todos los elementos con la clase .reveal
+            const elements = document.querySelectorAll('.reveal');
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+  </body>
+</html>

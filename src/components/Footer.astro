@@ -1,0 +1,44 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-ink text-paper py-16 px-6 border-t border-ink/10 mt-20">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+    
+    <div class="space-y-4">
+      <h3 class="font-serif text-2xl">María Esperanza Gallegos</h3>
+      <p class="text-paper/60 font-sans text-sm font-light max-w-xs">
+        Narrando historias desde el sur del mundo. Novelas, cuentos y reflexiones sobre la vida en papel.
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <h4 class="font-sans text-xs uppercase tracking-widest text-dusty-rose">Sígueme</h4>
+      <div class="flex flex-col gap-2 text-sm text-paper/80 font-light">
+        <a href="https://www.instagram.com/mariaesperanzagallegos/" class="hover:text-sage transition-colors">Instagram</a>
+        <a href="#" class="hover:text-sage transition-colors">Twitter / X</a>
+        <a href="#" class="hover:text-sage transition-colors">Goodreads</a>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <h4 class="font-sans text-xs uppercase tracking-widest text-dusty-rose">No te pierdas nada</h4>
+      <p class="text-xs text-paper/60">Recibe avisos de nuevos lanzamientos.</p>
+      <form class="flex gap-2" onsubmit="event.preventDefault();">
+        <input 
+          type="email" 
+          placeholder="tu@correo.com" 
+          class="bg-paper/10 border border-paper/20 px-3 py-2 text-sm text-paper outline-none focus:border-dusty-rose w-full"
+        />
+        <button class="bg-dusty-rose text-ink px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-sage transition-colors">
+          →
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="text-center pt-12 mt-12 border-t border-paper/10 text-xs text-paper/40 font-sans">
+    &copy; {currentYear} María Esperanza Gallegos. Todos los derechos reservados.
+  </div>
+</footer>

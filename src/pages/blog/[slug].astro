@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout title={`${post.data.title} | Blog`}>
+  <div class="fixed top-0 left-0 w-full h-1 bg-paper z-50">
+    <div class="h-full bg-dusty-rose w-0" id="progress-bar"></div>
+  </div>
+
+  <article class="pt-24 pb-32 px-6">
+    
+    <header class="max-w-3xl mx-auto text-center mb-16">
+        <a href="/blog" class="inline-block mb-8 text-xs font-bold tracking-widest uppercase text-ink/40 hover:text-ink transition-colors">
+            &larr; Volver al Diario
+        </a>
+        
+        <time class="block text-sage font-sans font-bold text-xs tracking-[0.2em] uppercase mb-4">
+            {post.data.publishedAt.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        
+        <h1 class="font-serif text-4xl md:text-6xl text-ink leading-tight mb-8">
+            {post.data.title}
+        </h1>
+
+        {post.data.image && (
+            <img 
+                src={post.data.image} 
+                alt={post.data.title} 
+                class="w-full aspect-video object-cover rounded-sm shadow-md mt-8"
+            />
+        )}
+    </header>
+
+    <div class="max-w-2xl mx-auto prose prose-stone prose-lg font-sans font-light text-ink/80 leading-loose prose-headings:font-serif prose-headings:text-ink prose-a:text-dusty-rose prose-blockquote:border-l-sage prose-blockquote:text-ink/60 prose-blockquote:font-serif prose-blockquote:italic">
+        <Content />
+    </div>
+
+  </article>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const bar = document.getElementById("progress-bar");
+      if(bar) bar.style.width = scrolled + "%";
+    });
+  </script>
+</BaseLayout>

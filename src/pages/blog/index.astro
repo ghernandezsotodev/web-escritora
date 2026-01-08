@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Obtener posts y ordenarlos por fecha (el más nuevo primero)
+const allPosts = await getCollection('posts');
+const sortedPosts = allPosts.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<BaseLayout title="Blog | María Esperanza Gallegos">
+  <main class="pt-24 pb-24 px-6 max-w-3xl mx-auto">
+    
+    <header class="mb-16 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl text-ink mb-4">Diario de Escritura</h1>
+      <p class="text-ink/60 font-sans font-light text-lg">
+        Pensamientos, borradores y noticias desde mi escritorio.
+      </p>
+    </header>
+
+    <div class="space-y-12">
+      {sortedPosts.map((post) => (
+        <article class="group relative border-b border-ink/10 pb-12 hover:border-dusty-rose transition-colors duration-500">
+          
+          <div class="flex flex-col md:flex-row gap-6 md:gap-12 md:items-center">
+            
+            <div class="md:w-32 shrink-0">
+                <time datetime={post.data.publishedAt.toISOString()} class="text-xs font-bold tracking-widest text-ink/40 uppercase font-sans">
+                    {post.data.publishedAt.toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </time>
+            </div>
+
+            <div>
+                <h2 class="font-serif text-2xl text-ink mb-3 group-hover:text-dusty-rose transition-colors">
+                    <a href={`/blog/${post.slug}`} class="before:absolute before:inset-0">
+                        {post.data.title}
+                    </a>
+                </h2>
+                <p class="text-ink/70 font-sans font-light leading-relaxed mb-4">
+                    {post.data.description}
+                </p>
+                <span class="text-xs font-bold text-sage uppercase tracking-widest group-hover:translate-x-2 transition-transform inline-block">
+                    Leer artículo &rarr;
+                </span>
+            </div>
+
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </main>
+</BaseLayout>

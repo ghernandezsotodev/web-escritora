@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  /* Paleta de Colores "Organic Paper" */
+  --color-paper: #FDFBF7;
+  --color-ink: #2D2A2E;
+  --color-dusty-rose: #E2D1C3;
+  --color-sage: #C8D5BB;
+
+  /* Tipografías */
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Manrope", sans-serif;
+}
+
+/* === CONFIGURACIÓN BASE === */
+html {
+  scroll-behavior: smooth;
+  /* IMPORTANTE: Esto evita que el menú tape el título al hacer clic */
+  scroll-padding-top: 100px; 
+}
+
+body {
+  /* Hace que la tipografía se vea más fina y nítida en MacOS/iOS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === TEXTURA DE PAPEL (NOISE) === */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Permite hacer clic a través de la textura */
+  z-index: 50; 
+  opacity: 0.04; /* Ajusta esto si quieres más o menos grano (0.02 a 0.05) */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* === DETALLES DE INTERFAZ === */
+
+/* Color de selección de texto (El detalle premium) */
+::selection {
+  background-color: var(--color-dusty-rose);
+  color: var(--color-ink);
+}
+
+/* Títulos equilibrados automáticamente (Como en revistas) */
+h1, h2, h3, h4, blockquote {
+  text-wrap: balance;
+}
+
+/* Focus visible accesible pero estético */
+:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 2px;
+}
+
+/* === ANIMACIONES (SCROLL REVEAL) === */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px); /* Empieza 30px más abajo */
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); /* Movimiento suave y elegante */
+  will-change: opacity, transform; /* Optimización de rendimiento */
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Retrasos para efecto cascada */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+/* === CLASE NAV CRISTAL (Solución Definitiva) === */
+.nav-scrolled {
+  /* Color Papel (#FDFBF7) al 95% de opacidad usando RGBA */
+  background-color: rgba(253, 251, 247, 0.95) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border-bottom-color: rgba(45, 42, 46, 0.05) !important;
+}
